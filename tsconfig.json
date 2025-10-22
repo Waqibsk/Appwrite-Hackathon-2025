@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "types": ["react", "react-dom"],
+    "strict": false,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowImportingTsExtensions": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"],
+      "@public/*": ["./public/*"],
+      "@components/*": ["components/*"]
+    }
+    
+  }
+  ,
+  "exclude": ["node_modules","src/components/ui"]
+}
