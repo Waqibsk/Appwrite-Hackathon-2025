@@ -26,7 +26,7 @@ export default function Navbar() {
     window.location.reload();
   };
   return (
-    <div className="flex justify-end  m-4 gap-3">
+    <div className="flex justify-end  m-4  gap-3">
       {!user && (
         <Button
           size="lg"

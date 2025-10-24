@@ -12,7 +12,7 @@ import {
 } from "@/lib/appwrite";
 import { Permission, Role } from "appwrite";
 export default function CreateSpace() {
-  const [form, setForm] = useState<SpaceType>({
+  const [form, setForm] = useState<any>({
     name: "",
     image: null,
     description: "",
