@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { account, ID_ } from "@/lib/appwrite";
+import { account, ID_, tabelsDB } from "@/lib/appwrite";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import { Role, Permission, Query } from "appwrite";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 import { Button } from "@/components/ui/button"; // or your own button
 import { Input } from "@/components/ui/input"; // or a simple <input>
 import { Label } from "@/components/ui/label";
 import { Check } from "lucide-react";
 import { useNavigate } from "react-router";
+import { DB_ID, USER_COLLECTIONS_ID } from "@/lib/appwrite";
+
 export function SignIn() {
   const [email, setEmail] = useState("");
   const [userId, setUserId] = useState<string | null>(null);
@@ -24,12 +27,12 @@ export function SignIn() {
     setLoading(true);
     try {
       const newUserId = ID_.unique();
-      setUserId(newUserId);
-      await account.createEmailToken({
+      const sessionToken = await account.createEmailToken({
         userId: newUserId,
         email,
       });
       setStep("otp");
+      setUserId(sessionToken.userId);
       setMessage("OTP sent! Check your email.");
     } catch (err: any) {
       console.error(err);
@@ -43,7 +46,33 @@ export function SignIn() {
     if (!userId) return;
     setLoading(true);
     try {
-      await account.createSession({ userId, secret: otp });
+      console.log(otp);
+      const session = await account.createSession({
+        userId: userId,
+        secret: otp,
+      });
+      const existing = await tabelsDB.listRows({
+        databaseId: DB_ID,
+        tableId: USER_COLLECTIONS_ID,
+        queries: [Query.equal("mail", email)],
+      });
+
+      if (existing.total > 0) {
+        console.log("User already exists, skipping creation");
+      } else {
+        await tabelsDB.createRow({
+          databaseId: DB_ID,
+          tableId: USER_COLLECTIONS_ID,
+          rowId: ID_.unique(),
+          data: { mail: email },
+          permissions: [
+            Permission.read(Role.user(userId)),
+            Permission.write(Role.user(userId)),
+            Permission.update(Role.user(userId)),
+            Permission.delete(Role.user(userId)),
+          ],
+        });
+      }
       setMessage(
         <span className="flex items-center gap-2 text-green-600">
           <Check size={18} /> Signed in successfully!
