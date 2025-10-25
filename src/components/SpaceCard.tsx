@@ -24,18 +24,18 @@ export default function SpaceCard({
   }
   return (
     <div
-      className="bg-neutral-400 "
+      className="bg-neutral-300 "
       onClick={() => {
         navigate(`/items/${spaceId}`);
       }}
     >
-      <div className=" rounded-lg h-[200px] m-4 p-4 cursor-pointer flex ">
+      <div className=" rounded-lg h-[200px] m-4 p-4 cursor-pointer flex max-sm:flex-col">
         {imageUrl && (
-          <div className="w-full">
-            <img src={imageUrl} className="h-full" alt="" />
+          <div className="w-full flex justify-center ">
+            <img src={imageUrl} className="max-sm:h-[100px]" alt="" />
           </div>
         )}
-        <div className="flex flex-col w-full items-center  ">
+        <div className="flex flex-col w-full items-center border-l-[2px] border-slate-100/40  ">
           <div>
             <div className="font-semibold text-2xl mb-2  w-[100%]">{name}</div>
 

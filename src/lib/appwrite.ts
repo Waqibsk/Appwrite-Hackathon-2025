@@ -14,3 +14,4 @@ export const DB_ID = DATABASE_ID;
 export const USER_COLLECTIONS_ID = import.meta.env.VITE_USER_COLLECTIONS_ID;
 export const BUCKET_ID = import.meta.env.VITE_BUCKET_ID;
 export const SPACES_COLLECTIONS_ID = import.meta.env.VITE_SPACES_COLLECTIONS_ID;
+export const ITEMS_COLLECTIONS_ID = import.meta.env.VITE_ITEMS_COLLECTIONS_ID;

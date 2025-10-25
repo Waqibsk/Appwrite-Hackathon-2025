@@ -49,31 +49,6 @@ export default function Navbar() {
           Logout
         </Button>
       )}
-      {user && (
-        <Button
-          size="lg"
-          variant="outline"
-          className="bg-neutral-900 text-white  rounded-[12px]"
-          onClick={() => {
-            navigate("/space/create");
-          }}
-        >
-          Create Space
-        </Button>
-      )}
-
-      {user && (
-        <Button
-          size="lg"
-          variant="outline"
-          className="bg-neutral-900 text-white  rounded-[12px]"
-          onClick={() => {
-            navigate("/create");
-          }}
-        >
-          Create Post
-        </Button>
-      )}
     </div>
   );
 }

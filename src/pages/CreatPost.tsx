@@ -1,14 +1,27 @@
 import React, { useState } from "react";
 import { PostType } from "@/types/post";
 import Navbar from "@/components/global/Navbar";
+import { useUser } from "@/context/UserContext";
+import {
+  storage,
+  BUCKET_ID,
+  ID_,
+  DB_ID,
+  tabelsDB,
+  ITEMS_COLLECTIONS_ID,
+} from "@/lib/appwrite";
+import { Spinner } from "@/components/ui/spinner";
+import { useParams } from "react-router";
 export default function CreatePost() {
-  const [form, setForm] = useState<PostType>({
+  const { id } = useParams();
+  const { user, loading } = useUser();
+  const [form, setForm] = useState<any>({
     name: "",
     lastSeen: "",
     image: null,
     remarks: "",
     bounty: "",
-    category: "urgent",
+    category: "Documents",
     priority: "medium",
   });
 
@@ -25,12 +38,44 @@ export default function CreatePost() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Post Data:", form);
-    alert("Post submitted! Check console for data.");
+    try {
+      let uploadedFile = null;
+      if (form.image) {
+        uploadedFile = await storage.createFile({
+          bucketId: BUCKET_ID,
+          fileId: ID_.unique(),
+          file: form.image,
+        });
+      }
+      await tabelsDB.createRow({
+        databaseId: DB_ID,
+        tableId: ITEMS_COLLECTIONS_ID,
+        rowId: ID_.unique(),
+        data: {
+          name: form.name,
+          lastseen: form.lastSeen,
+          remarks: form.remarks,
+          bounty: form.bounty,
+          category: form.category,
+          priority: form.priority,
+          spaceId: id,
+          createdBy: user?.$id,
+          imageId: uploadedFile?.$id,
+        },
+      });
+      console.log("CREATED post");
+    } catch (err) {
+      console.error(err);
+    }
   };
-
+  if (loading)
+    return (
+      <div>
+        <Spinner className="size-4" />
+      </div>
+    );
   return (
     <div>
       <Navbar />
@@ -48,7 +93,6 @@ export default function CreatePost() {
           />
 
           <input
-            type="date"
             name="lastSeen"
             placeholder="Last Seen"
             value={form.lastSeen}
@@ -56,7 +100,6 @@ export default function CreatePost() {
             required
             className="border p-2 rounded"
           />
-
           <input
             type="file"
             name="image"
@@ -88,7 +131,6 @@ export default function CreatePost() {
             onChange={handleChange}
             className="border p-2 rounded"
           >
-            <option value="urgent">Urgent</option>
             <option value="docs">Documents</option>
             <option value="accessory">Accessory</option>
             <option value="money">Money</option>

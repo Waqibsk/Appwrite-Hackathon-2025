@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "@/components/global/Navbar";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { SpaceType } from "@/types/space";
 import {
   BUCKET_ID,
@@ -12,6 +13,7 @@ import {
 } from "@/lib/appwrite";
 import { Permission, Role } from "appwrite";
 export default function CreateSpace() {
+  const navigate = useNavigate();
   const [form, setForm] = useState<any>({
     name: "",
     image: null,
@@ -53,6 +55,7 @@ export default function CreateSpace() {
         },
       });
       console.log("CREATED SPACE ");
+      navigate("/");
     } catch (err) {
       console.error(err);
     }

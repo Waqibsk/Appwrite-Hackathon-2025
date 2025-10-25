@@ -5,12 +5,14 @@ import Home from "./pages/Home";
 import CreatePost from "./pages/CreatPost";
 import CreateSpace from "./pages/CreateSpace";
 import ItemsList from "./components/ItemsList";
+import PostPage from "./pages/PostPage";
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/create" element={<CreatePost />} />
+      <Route path="/create/:id" element={<CreatePost />} />
       <Route path="/signin" element={<SignIn />} />
+      <Route path="/item/:id" element={<PostPage />} />
       <Route path="/items/:id" element={<ItemsList />} />
       <Route path="/space/create" element={<CreateSpace />} />
     </Routes>

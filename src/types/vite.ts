@@ -4,6 +4,7 @@ interface ImportMetaEnv {
   readonly VITE_DATABASE_ID: string;
   readonly VITE_USER_COLLECTIONS_ID: string;
   readonly VITE_SPACES_COLLECTIONS_ID: string;
+  readonly VITE_ITEMS_COLLECTIONS_ID: string;
   readonly VITE_BUCKET_ID: string;
 }
 
