@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { PostType } from "@/types/post";
 import Navbar from "@/components/global/Navbar";
 import { useUser } from "@/context/UserContext";
+import { useNavigate } from "react-router";
 import {
   storage,
   BUCKET_ID,
@@ -15,9 +16,11 @@ import { useParams } from "react-router";
 export default function CreatePost() {
   const { id } = useParams();
   const { user, loading } = useUser();
+  const navigate = useNavigate();
   const [form, setForm] = useState<any>({
     name: "",
     lastSeen: "",
+    type: "",
     image: null,
     remarks: "",
     bounty: "",
@@ -58,6 +61,7 @@ export default function CreatePost() {
           lastseen: form.lastSeen,
           remarks: form.remarks,
           bounty: form.bounty,
+          type: form.type,
           category: form.category,
           priority: form.priority,
           spaceId: id,
@@ -65,7 +69,7 @@ export default function CreatePost() {
           imageId: uploadedFile?.$id,
         },
       });
-      console.log("CREATED post");
+      navigate(`/items/${id}`);
     } catch (err) {
       console.error(err);
     }
@@ -78,7 +82,6 @@ export default function CreatePost() {
     );
   return (
     <div>
-      <Navbar />
       <div className="max-w-lg mx-auto mt-8 p-6 border rounded-xl shadow-lg">
         <h2 className="text-2xl font-semibold mb-4">Create Lost/Found Post</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
@@ -92,6 +95,15 @@ export default function CreatePost() {
             className="border p-2 rounded"
           />
 
+          <input
+            type="text"
+            name="type"
+            placeholder="Lost or found "
+            value={form.type}
+            onChange={handleChange}
+            required
+            className="border p-2 rounded"
+          />
           <input
             name="lastSeen"
             placeholder="Last Seen"

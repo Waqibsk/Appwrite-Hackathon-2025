@@ -18,15 +18,15 @@ export default function Navbar() {
       }
     }
     getCurrentUser();
-  }, []);
+  }, [user]);
   const handleLogout = async () => {
     await account.deleteSession({
       sessionId: "current",
     });
-    window.location.reload();
+    setUser(null);
   };
   return (
-    <div className="flex justify-end  m-4  gap-3">
+    <div className="flex justify-end  m-3  gap-3">
       {!user && (
         <Button
           size="lg"
@@ -47,6 +47,18 @@ export default function Navbar() {
           onClick={handleLogout}
         >
           Logout
+        </Button>
+      )}
+      {user && (
+        <Button
+          size="lg"
+          variant="outline"
+          className="bg-neutral-900 text-white  rounded-[12px]"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Home
         </Button>
       )}
     </div>

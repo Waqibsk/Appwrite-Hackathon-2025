@@ -2,6 +2,7 @@ export interface PostType {
   $id: string;
   name: string;
   lastSeen: string;
+  type: string;
   image: File | null;
   remarks: string;
   bounty?: string;

@@ -8,11 +8,14 @@ import {
 } from "@/lib/appwrite";
 import { Query } from "appwrite";
 import { SpaceType } from "@/types/space";
-
+import { Spinner } from "@/components/ui/spinner";
 import SpaceCard from "@/components/SpaceCard";
-
+import { useNavigate } from "react-router";
+import { Button } from "@/components/ui/button";
 export default function Home() {
+  const navigate = useNavigate();
   const [spaces, setSpaces] = useState<SpaceType[]>([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchSpaces = async () => {
       const res = await tabelsDB.listRows({
@@ -21,15 +24,34 @@ export default function Home() {
         queries: [],
       });
       setSpaces(res.rows as unknown as SpaceType[]);
+      setLoading(false);
     };
     fetchSpaces();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="flex justify-center min-h-screen items-center">
+        <Spinner className="size-8" />
+      </div>
+    );
+  }
   return (
     <div className=" min-h-screen text-black ">
-      <Navbar />
       <div className="p-4">
-        <h1 className="text-3xl font-bold mb-4">Spaces</h1>
+        <div className="flex justify-between">
+          <h1 className="text-3xl font-bold mb-4">Spaces</h1>
+          <Button
+            size="lg"
+            variant="outline"
+            className="bg-neutral-900 text-white  rounded-[12px]"
+            onClick={() => {
+              navigate("/space/create");
+            }}
+          >
+            Create Space
+          </Button>
+        </div>
         {spaces.length === 0 ? (
           <p>No spaces found.</p>
         ) : (

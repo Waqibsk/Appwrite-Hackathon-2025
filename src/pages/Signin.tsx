@@ -79,6 +79,7 @@ export function SignIn() {
         </span>
       );
       navigate("/");
+      window.location.reload();
     } catch (err: any) {
       console.error(err);
       setMessage(err.message || "Invalid OTP.");

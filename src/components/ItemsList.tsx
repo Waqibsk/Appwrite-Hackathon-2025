@@ -27,8 +27,6 @@ export default function ItemsList() {
           });
           setItems(res.rows as unknown as PostType[]);
 
-          console.log("THISJjl", res.rows);
-
           setLoading(false);
         }
       } catch (err) {
@@ -40,14 +38,15 @@ export default function ItemsList() {
   }, []);
 
   return (
-    <div>
+    <div className="">
       {loading ? (
-        <Spinner className="size-4" />
+        <div className="flex justify-center min-h-screen items-center">
+          <Spinner className="size-8" />
+        </div>
       ) : (
         <div>
-          <Navbar />
           <div className="flex flex-col">
-            <div className="flex justify-end">
+            <div className="flex justify-start m-4">
               <Button
                 onClick={() => {
                   navigate(`/create/${id}`);
@@ -56,12 +55,18 @@ export default function ItemsList() {
                 Create Post
               </Button>
             </div>
-            <div>
+            <div className="grid grid-cols-5  max-lg:grid-cols-4 gap-2 max-md:grid-cols-3 min-h-screen max-sm:grid-cols-2 max-[380px]:grid-cols-1 ">
               {items.length === 0 ? (
                 <p> hello no items</p>
               ) : (
                 items.map((item) => (
-                  <PostCard name={item.name} id={item.$id } imageId={item.imageId} />
+                  <PostCard
+                    remarks={item.remarks}
+                    key={item.$id}
+                    name={item.name}
+                    id={item.$id}
+                    imageId={item.imageId}
+                  />
                 ))
               )}
             </div>

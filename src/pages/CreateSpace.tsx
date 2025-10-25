@@ -63,7 +63,6 @@ export default function CreateSpace() {
 
   return (
     <div>
-      <Navbar />
       <div className="max-w-lg mx-auto mt-8 p-6 border rounded-xl shadow-lg">
         <h2 className="text-2xl font-semibold mb-4">Create Lost/Found Post</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
