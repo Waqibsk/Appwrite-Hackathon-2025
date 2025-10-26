@@ -7,6 +7,7 @@ import { Spinner } from "./ui/spinner";
 import { Pencil, CheckCircle, Undo2 } from "lucide-react";
 import { Trash2 } from "lucide-react";
 import { PostType } from "@/types/post";
+import {motion} from "framer-motion"
 export default function UserPostCard({
   item,
   onToggleResolve,
@@ -81,7 +82,10 @@ export default function UserPostCard({
     }
   };
   return (
-    <div
+    <motion.div
+  initial={{ scale: 1 }}
+  whileHover={{ scale: 1.02 }}
+  transition={{ type: "spring", stiffness: 300, damping: 15 }}
       className="w-[93%] h-[60px]  shadow-md border-[1px] border-slate-300 cursor-pointer flex flex-col m-3   "
       onClick={() => {
         if (isDeleting) return;
@@ -130,6 +134,6 @@ export default function UserPostCard({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

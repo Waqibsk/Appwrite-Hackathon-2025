@@ -7,6 +7,7 @@ import {
   SPACES_COLLECTIONS_ID,
 } from "@/lib/appwrite";
 import { Plus } from "lucide-react";
+import { motion } from "framer-motion"
 import { Query } from "appwrite";
 import { SpaceType } from "@/types/space";
 import { Spinner } from "@/components/ui/spinner";
@@ -38,7 +39,12 @@ export default function Home() {
     );
   }
   return (
-    <div className=" min-h-screen text-black ">
+    <motion.div
+     initial={{opacity:0,x:-20}} 
+    animate={{opacity:1,x:0}}
+      transition={{ duration: 0.3 }}
+      
+      className=" min-h-screen text-black ">
       <div className="p-4">
         <div className="flex justify-between">
           <h1 className="text-3xl font-semibold mb-4">Spaces</h1>
@@ -67,6 +73,6 @@ export default function Home() {
           ))
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }

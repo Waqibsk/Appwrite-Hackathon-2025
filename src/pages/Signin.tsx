@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { Check } from "lucide-react";
 import { useNavigate } from "react-router";
 import { DB_ID, USER_COLLECTIONS_ID } from "@/lib/appwrite";
+import {motion} from "framer-motion"
 
 export function SignIn() {
   const [email, setEmail] = useState("");
@@ -68,8 +69,12 @@ export function SignIn() {
   }
 
   return (
-    <div className="flex justify-center min-h-screen items-center">
-      <div className="p-10 w-[30%] rounded-xl border bg-white shadow">
+    <motion.div
+      initial={{ scale: 1 }}
+  whileHover={{ scale: 1.05 }}
+  transition={{ type: "spring", stiffness: 300, damping: 15 }}
+      className="flex justify-center min-h-screen items-center">
+      <div className="p-10 w-[30%] shadow-md rounded-xl border bg-white shadow">
         <h2 className="text-2xl font-semibold text-center mb-4">Sign In</h2>
 
         {step === "email" && (
@@ -123,6 +128,6 @@ export function SignIn() {
 
         {message && <p className="mt-4 text-center text-gray-700">{message}</p>}
       </div>
-    </div>
+    </motion.div>
   );
 }

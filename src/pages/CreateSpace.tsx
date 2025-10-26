@@ -3,6 +3,8 @@ import Navbar from "@/components/global/Navbar";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { SpaceType } from "@/types/space";
+
+import { motion } from "framer-motion"
 import {
   BUCKET_ID,
   ID_,
@@ -61,7 +63,11 @@ export default function CreateSpace() {
   };
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, x: -20}} 
+      animate={{opacity:1,x:0}}
+      transition={{duration:0.3}}
+    >
       <div className="max-w-lg mx-auto mt-8 p-6 border rounded-xl shadow-lg">
         <h2 className="text-2xl font-semibold mb-4">Create Lost/Found Post</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
@@ -98,6 +104,6 @@ export default function CreateSpace() {
           </button>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 }

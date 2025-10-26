@@ -11,6 +11,8 @@ import {
   tabelsDB,
   ITEMS_COLLECTIONS_ID,
 } from "@/lib/appwrite";
+
+import { motion } from "framer-motion"
 import { Spinner } from "@/components/ui/spinner";
 import { useParams } from "react-router";
 import { Permission, Role } from "appwrite";
@@ -86,12 +88,16 @@ export default function CreatePost() {
   };
   if (loading)
     return (
-      <div>
+      <div className="flex justify-center items-center min-h-screen">
         <Spinner className="size-4" />
       </div>
     );
   return (
-    <div>
+    <motion.div
+    initial={{x:-20,opacity:0}}
+    animate={{x:0,opacity:1}}
+    transition={{duration:0.3}}
+    >
       <div className="max-w-lg mx-auto mt-8 p-6 border rounded-xl shadow-lg">
         <h2 className="text-2xl font-semibold mb-4">Create Lost/Found Post</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
@@ -177,6 +183,6 @@ export default function CreatePost() {
           </button>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { storage } from "@/lib/appwrite";
 import { useNavigate } from "react-router";
 import { BUCKET_ID } from "@/lib/appwrite";
+import {motion, scale} from "framer-motion"
 export default function SpaceCard({
   name,
   description,
@@ -22,7 +23,10 @@ export default function SpaceCard({
     });
   }
   return (
-    <div
+    <motion.div
+ initial={{ scale: 1 }}
+  whileHover={{ scale: 1.02 }}
+  transition={{ type: "spring", stiffness: 300, damping: 15 }}
       className="border-[1px] border-slate-400 m-4 "
       onClick={() => {
         navigate(`/items/${spaceId}`);
@@ -50,6 +54,6 @@ export default function SpaceCard({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

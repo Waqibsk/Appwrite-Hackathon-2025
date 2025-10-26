@@ -6,6 +6,8 @@ import { PostType } from "@/types/post";
 import { Query } from "appwrite";
 import React, { useEffect, useState } from "react";
 
+import {motion, scale} from "framer-motion"
+
 export default function Profile() {
   const { user, loading } = useUser();
   const [items, setItems] = useState<any[]>([]);
@@ -66,11 +68,15 @@ export default function Profile() {
     );
   }
   return (
-    <div>
+    <motion.div
+   initial={{x:-20,opacity:0}} 
+   animate={{x:0,opacity:1}}
+   transition={{duration:0.3}}
+    >
       <div className="text-[40px] fonr-semibold p-3">Dashboard</div>
 
-      <div className="p-3">
-        <h1>Not Resolved</h1>
+      <div className="p-4">
+        <h1 className="">Not Resolved</h1>
         <div>
           {notResolvedItems.length === 0 ? (
             <p className="m-4"> No items to show</p>
@@ -86,7 +92,7 @@ export default function Profile() {
           )}
         </div>
       </div>
-      <div className="p-3">
+      <div className="p-4">
         <h1>Resolved</h1>
         <div>
           {resolvedItems.length === 0 ? (
@@ -103,6 +109,6 @@ export default function Profile() {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

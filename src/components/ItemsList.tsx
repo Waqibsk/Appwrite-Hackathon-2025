@@ -8,7 +8,7 @@ import { DB_ID, ITEMS_COLLECTIONS_ID, storage, tabelsDB } from "@/lib/appwrite";
 import { Query } from "appwrite";
 import PostCard from "./PostCard";
 import { Plus } from "lucide-react";
-
+import {motion} from "framer-motion"
 export default function ItemsList() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -37,7 +37,11 @@ export default function ItemsList() {
   }, []);
 
   return (
-    <div className="">
+    <motion.div
+      initial={{x:-20,opacity:0}} 
+   animate={{x:0,opacity:1}}
+   transition={{duration:0.3}}
+      className="">
       {loading ? (
         <div className="flex justify-center min-h-screen items-center">
           <Spinner className="size-8" />
@@ -64,6 +68,6 @@ export default function ItemsList() {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

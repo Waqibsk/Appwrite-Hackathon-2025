@@ -39,17 +39,7 @@ export default function Navbar() {
           Signin
         </Button>
       )}
-      {user && (
-        <Button
-          size="lg"
-          variant="outline"
-          className=" text-black border-none shadow-none "
-          onClick={handleLogout}
-        >
-          Logout
-        </Button>
-      )}
-      {user && (
+ {user && (
         <Button
           size="lg"
           variant="outline"
@@ -73,6 +63,17 @@ export default function Navbar() {
           Profile
         </Button>
       )}
+      {user && (
+        <Button
+          size="lg"
+          variant="outline"
+          className=" text-black border-none shadow-none "
+          onClick={handleLogout}
+        >
+          Logout
+        </Button>
+      )}
+     
     </div>
   );
 }

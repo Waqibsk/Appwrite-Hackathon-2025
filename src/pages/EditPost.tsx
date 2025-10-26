@@ -9,6 +9,7 @@ import {
   tabelsDB,
   ITEMS_COLLECTIONS_ID,
 } from "@/lib/appwrite";
+import { motion } from "framer-motion"
 import { Spinner } from "@/components/ui/spinner";
 
 interface PostFormState {
@@ -150,7 +151,11 @@ export default function EditPost() {
   }
 
   return (
-    <div>
+    <motion.div
+   initial={{x:-20,opacity:0}}
+    animate={{x:0,opacity:1}}
+    transition={{duration:0.3}}
+    >
       <div className="max-w-lg mx-auto mt-8 p-6 border rounded-xl shadow-lg">
         <h2 className="text-2xl font-semibold mb-4">Edit Lost/Found Post</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
@@ -246,6 +251,6 @@ export default function EditPost() {
           </button>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 }

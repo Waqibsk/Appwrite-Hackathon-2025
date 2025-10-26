@@ -2,6 +2,7 @@ import React from "react";
 import { storage, BUCKET_ID } from "@/lib/appwrite";
 import { useNavigate } from "react-router";
 import { PostType } from "@/types/post";
+import {motion} from "framer-motion"
 export default function PostCard({ post }: { post: PostType }) {
   const navigate = useNavigate();
   let imageUrl = null;
@@ -13,7 +14,11 @@ export default function PostCard({ post }: { post: PostType }) {
   }
 
   return (
-    <div
+    <motion.div
+  initial={{ opacity:0,scale: 1,x:-20 }}
+  animate={{x:0,opacity:1}}
+  whileHover={{ scale: 1.02 }}
+  transition={{duration:0.3, type: "spring", stiffness: 300, damping: 15 }}
       className="w-[93%] h-[400px]  shadow-md border-[1px] border-slate-300 cursor-pointer flex flex-col m-3   "
       onClick={() => {
         navigate(`/item/${post.$id}`);
@@ -45,6 +50,6 @@ export default function PostCard({ post }: { post: PostType }) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
