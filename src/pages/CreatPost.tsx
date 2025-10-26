@@ -24,6 +24,7 @@ export default function CreatePost() {
     type: "",
     image: null,
     remarks: "",
+    resolved: false,
     bounty: "",
     category: "Documents",
     priority: "medium",
@@ -53,7 +54,7 @@ export default function CreatePost() {
           file: form.image,
         });
       }
-      if (id) {
+      if (id && user) {
         await tabelsDB.createRow({
           databaseId: DB_ID,
           tableId: ITEMS_COLLECTIONS_ID,
@@ -67,13 +68,14 @@ export default function CreatePost() {
             category: form.category,
             priority: form.priority,
             spaceId: id,
+            resolved: form.resolved,
             createdBy: user?.$id,
             imageId: uploadedFile?.$id,
           },
           permissions: [
-            Permission.update(Role.user(id)),
-            Permission.delete(Role.user(id)),
-            Permission.read(Role.user(id)),
+            Permission.update(Role.user(user.$id)),
+            Permission.delete(Role.user(user.$id)),
+            Permission.read(Role.user(user.$id)),
           ],
         });
       }

@@ -26,12 +26,12 @@ export default function Navbar() {
     setUser(null);
   };
   return (
-    <div className="flex justify-end  m-3  gap-3">
+    <div className="flex justify-end  m-3  border-b-[1px] border-slate-300">
       {!user && (
         <Button
           size="lg"
           variant="outline"
-          className="bg-neutral-900 text-white  rounded-[12px]"
+          className=" text-black border-none shadow-none"
           onClick={() => {
             navigate("/signin");
           }}
@@ -43,7 +43,7 @@ export default function Navbar() {
         <Button
           size="lg"
           variant="outline"
-          className="bg-neutral-900 text-white  rounded-[12px]"
+          className=" text-black border-none shadow-none "
           onClick={handleLogout}
         >
           Logout
@@ -53,7 +53,7 @@ export default function Navbar() {
         <Button
           size="lg"
           variant="outline"
-          className="bg-neutral-900 text-white  rounded-[12px]"
+          className="text-black border-none shadow-none  "
           onClick={() => {
             navigate("/");
           }}
@@ -65,12 +65,12 @@ export default function Navbar() {
         <Button
           size="lg"
           variant="outline"
-          className="bg-neutral-900 text-white  rounded-[12px]"
+          className=" text-black border-none shadow-none "
           onClick={() => {
             navigate(`/profile`);
           }}
         >
-          profile
+          Profile
         </Button>
       )}
     </div>

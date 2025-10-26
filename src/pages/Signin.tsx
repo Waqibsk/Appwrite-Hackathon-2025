@@ -8,8 +8,8 @@ import {
 } from "@/components/ui/input-otp";
 import { Role, Permission, Query } from "appwrite";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
-import { Button } from "@/components/ui/button"; // or your own button
-import { Input } from "@/components/ui/input"; // or a simple <input>
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Check } from "lucide-react";
 import { useNavigate } from "react-router";
@@ -51,28 +51,7 @@ export function SignIn() {
         userId: userId,
         secret: otp,
       });
-      const existing = await tabelsDB.listRows({
-        databaseId: DB_ID,
-        tableId: USER_COLLECTIONS_ID,
-        queries: [Query.equal("mail", email)],
-      });
 
-      if (existing.total > 0) {
-        console.log("User already exists, skipping creation");
-      } else {
-        await tabelsDB.createRow({
-          databaseId: DB_ID,
-          tableId: USER_COLLECTIONS_ID,
-          rowId: ID_.unique(),
-          data: { mail: email },
-          permissions: [
-            Permission.read(Role.user(userId)),
-            Permission.write(Role.user(userId)),
-            Permission.update(Role.user(userId)),
-            Permission.delete(Role.user(userId)),
-          ],
-        });
-      }
       setMessage(
         <span className="flex items-center gap-2 text-green-600">
           <Check size={18} /> Signed in successfully!

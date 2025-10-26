@@ -1,7 +1,7 @@
 export interface PostType {
   $id: string;
   name: string;
-  lastSeen: string;
+  lastseen: string;
   type: string;
   image: File | null;
   remarks: string;
@@ -9,6 +9,7 @@ export interface PostType {
   category: string;
   priority: string;
   createdBy: string;
+  resolved: boolean;
   spaceId: string;
   imageId: string;
 }

@@ -6,6 +6,7 @@ import {
   DB_ID,
   SPACES_COLLECTIONS_ID,
 } from "@/lib/appwrite";
+import { Plus } from "lucide-react";
 import { Query } from "appwrite";
 import { SpaceType } from "@/types/space";
 import { Spinner } from "@/components/ui/spinner";
@@ -40,16 +41,16 @@ export default function Home() {
     <div className=" min-h-screen text-black ">
       <div className="p-4">
         <div className="flex justify-between">
-          <h1 className="text-3xl font-bold mb-4">Spaces</h1>
+          <h1 className="text-3xl font-semibold mb-4">Spaces</h1>
           <Button
             size="lg"
             variant="outline"
-            className="bg-neutral-900 text-white  rounded-[12px]"
+            className="bg-neutral-900 text-white px-5 flex items-center "
             onClick={() => {
               navigate("/space/create");
             }}
           >
-            Create Space
+            <Plus /> Create Space
           </Button>
         </div>
         {spaces.length === 0 ? (
