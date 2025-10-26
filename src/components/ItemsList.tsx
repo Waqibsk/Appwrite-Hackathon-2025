@@ -57,7 +57,7 @@ export default function ItemsList() {
             </div>
             <div className="grid grid-cols-5  max-lg:grid-cols-4 gap-2 max-md:grid-cols-3 min-h-screen max-sm:grid-cols-2 max-[380px]:grid-cols-1 ">
               {items.length === 0 ? (
-                <p> hello no items</p>
+                <p className="m-4"> No items to show</p>
               ) : (
                 items.map((item) => (
                   <PostCard

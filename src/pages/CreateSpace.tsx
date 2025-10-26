@@ -54,7 +54,6 @@ export default function CreateSpace() {
           imageId: uploadedFile?.$id,
         },
       });
-      console.log("CREATED SPACE ");
       navigate("/");
     } catch (err) {
       console.error(err);

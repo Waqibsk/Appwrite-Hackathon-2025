@@ -13,6 +13,7 @@ import {
 } from "@/lib/appwrite";
 import { Spinner } from "@/components/ui/spinner";
 import { useParams } from "react-router";
+import { Permission, Role } from "appwrite";
 export default function CreatePost() {
   const { id } = useParams();
   const { user, loading } = useUser();
@@ -52,23 +53,30 @@ export default function CreatePost() {
           file: form.image,
         });
       }
-      await tabelsDB.createRow({
-        databaseId: DB_ID,
-        tableId: ITEMS_COLLECTIONS_ID,
-        rowId: ID_.unique(),
-        data: {
-          name: form.name,
-          lastseen: form.lastSeen,
-          remarks: form.remarks,
-          bounty: form.bounty,
-          type: form.type,
-          category: form.category,
-          priority: form.priority,
-          spaceId: id,
-          createdBy: user?.$id,
-          imageId: uploadedFile?.$id,
-        },
-      });
+      if (id) {
+        await tabelsDB.createRow({
+          databaseId: DB_ID,
+          tableId: ITEMS_COLLECTIONS_ID,
+          rowId: ID_.unique(),
+          data: {
+            name: form.name,
+            lastseen: form.lastSeen,
+            remarks: form.remarks,
+            bounty: form.bounty,
+            type: form.type,
+            category: form.category,
+            priority: form.priority,
+            spaceId: id,
+            createdBy: user?.$id,
+            imageId: uploadedFile?.$id,
+          },
+          permissions: [
+            Permission.update(Role.user(id)),
+            Permission.delete(Role.user(id)),
+            Permission.read(Role.user(id)),
+          ],
+        });
+      }
       navigate(`/items/${id}`);
     } catch (err) {
       console.error(err);

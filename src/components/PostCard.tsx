@@ -23,9 +23,10 @@ export default function PostCard({
 
   return (
     <div
-      className="w-[93%] h-[400px]  shadow-md border-[2px] border-slate-300 cursor-pointer flex flex-col m-3   "
+      className="w-[93%] h-[400px]  shadow-md border-[1px] border-slate-300 cursor-pointer flex flex-col m-3   "
       onClick={() => {
         navigate(`/item/${id}`);
+        window.scrollTo(0, 0);
       }}
     >
       <div>

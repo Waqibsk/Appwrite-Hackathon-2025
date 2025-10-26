@@ -18,7 +18,7 @@ export default function Navbar() {
       }
     }
     getCurrentUser();
-  }, [user]);
+  }, []);
   const handleLogout = async () => {
     await account.deleteSession({
       sessionId: "current",
@@ -59,6 +59,18 @@ export default function Navbar() {
           }}
         >
           Home
+        </Button>
+      )}
+      {user && (
+        <Button
+          size="lg"
+          variant="outline"
+          className="bg-neutral-900 text-white  rounded-[12px]"
+          onClick={() => {
+            navigate(`/profile`);
+          }}
+        >
+          profile
         </Button>
       )}
     </div>
