@@ -10,6 +10,7 @@ export interface PostType {
   priority: string;
   createdBy: string;
   resolved: boolean;
+  $createdAt: string;
   spaceId: string;
   imageId: string;
 }

@@ -50,7 +50,9 @@ export default function PostCard({ post }: { post: PostType }) {
             </div>
           </div>
           <div className="h-[60%] flex justify-center px-3 flex-col ">
-            <div>LastSeen: {post.lastseen}</div>
+            <div className="overflow-hidden whitespace-nowrap text-ellipsis">
+              LastSeen: {post.lastseen}
+            </div>
             <div>Priority: {post.priority}</div>
           </div>
         </div>

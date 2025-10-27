@@ -14,6 +14,7 @@ import {
 import { Query } from "appwrite";
 import PostCard from "./PostCard";
 import { Plus } from "lucide-react";
+import { ArrowDownWideNarrow } from "lucide-react";
 import { motion } from "framer-motion";
 export default function ItemsList() {
   const { id } = useParams();
@@ -62,6 +63,37 @@ export default function ItemsList() {
     fetchItems();
   }, []);
 
+  const handleSortbyTime = (name: string) => {
+    if (name == "lost") {
+      setLostItems(
+        [...items]
+          .filter((item) => item.type === "Lost")
+          .sort(
+            (a, b) =>
+              new Date(b.$createdAt).getTime() -
+              new Date(a.$createdAt).getTime()
+          )
+      );
+    } else if (name == "found") {
+      setFoundItems(
+        [...items]
+          .filter((item) => item.type === "Found")
+          .sort(
+            (a, b) =>
+              new Date(b.$createdAt).getTime() -
+              new Date(a.$createdAt).getTime()
+          )
+      );
+    } else {
+      setItems(
+        [...items].sort(
+          (a, b) =>
+            new Date(b.$createdAt).getTime() - new Date(a.$createdAt).getTime()
+        )
+      );
+    }
+  };
+
   return (
     <motion.div
       initial={{ x: -20, opacity: 0 }}
@@ -92,7 +124,17 @@ export default function ItemsList() {
               </Button>
             </div>
             <div>
-              <h1 className="p-4 font-semibold text-[30px]">Lost Items</h1>
+              <div className="flex items-center justify-between">
+                <h1 className="p-4 font-semibold text-[30px]">Lost Items</h1>
+                <Button
+                  className="flex m-2  items-center  "
+                  onClick={() => {
+                    handleSortbyTime("lost");
+                  }}
+                >
+                  <ArrowDownWideNarrow /> Recent
+                </Button>
+              </div>
               <div className="grid grid-cols-5  max-lg:grid-cols-4 gap-2 max-md:grid-cols-3 max-h-[500px] max-sm:grid-cols-2 max-[380px]:grid-cols-1 ">
                 {LostItems.length === 0 ? (
                   <p className="m-4"> No items to show</p>
@@ -102,7 +144,17 @@ export default function ItemsList() {
               </div>
             </div>
             <div>
-              <h1 className="p-4 font-semibold text-[30px]">Found Items</h1>
+              <div className="flex items-center justify-between">
+                <h1 className="p-4 font-semibold text-[30px]">Found Items</h1>
+                <Button
+                  className="flex m-2  items-center  "
+                  onClick={() => {
+                    handleSortbyTime("found");
+                  }}
+                >
+                  <ArrowDownWideNarrow /> Recent
+                </Button>
+              </div>
               <div className="grid grid-cols-5  max-lg:grid-cols-4 gap-2 max-md:grid-cols-3  max-h-[500px] max-sm:grid-cols-2 max-[380px]:grid-cols-1 ">
                 {FoundItems.length === 0 ? (
                   <p className="m-4"> No items to show</p>
@@ -112,7 +164,17 @@ export default function ItemsList() {
               </div>
             </div>
             <div>
-              <h1 className="p-4 font-semibold text-[30px]">All Items</h1>
+              <div className="flex items-center justify-between">
+                <h1 className="p-4 font-semibold text-[30px]">All Items</h1>
+                <Button
+                  className="flex m-2  items-center  "
+                  onClick={() => {
+                    handleSortbyTime("all");
+                  }}
+                >
+                  <ArrowDownWideNarrow /> Recent
+                </Button>
+              </div>
               <div className="grid grid-cols-5  max-lg:grid-cols-4 gap-1 max-md:grid-cols-3 max-h-[500px] max-sm:grid-cols-2 max-[380px]:grid-cols-1 ">
                 {items.length === 0 ? (
                   <p className="m-4"> No items to show</p>

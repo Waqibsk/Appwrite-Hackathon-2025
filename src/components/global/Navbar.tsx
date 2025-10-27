@@ -23,6 +23,7 @@ export default function Navbar() {
     await account.deleteSession({
       sessionId: "current",
     });
+    navigate("/signin");
     setUser(null);
   };
   return (

@@ -103,7 +103,7 @@ export default function UserPostCard({
       }}
     >
       <div>
-        <div className="flex flex-col  w-full ">
+        <div className="flex flex-col  w-full">
           <div className=" flex  p-3  h-full justify-between  items-center">
             <div className="font-md text-black">{name}</div>
             <div className="flex gap-4 m-2 items-center">
