@@ -261,7 +261,7 @@ export default function EditPost() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="bg-blue-600 text-white p-2 rounded hover:bg-blue-700 disabled:bg-blue-300 flex items-center justify-center"
+            className="bg-neutral-800 text-white p-2 rounded hover:bg-neutral-700 disabled:bg-blue-300 flex items-center justify-center"
           >
             {isSubmitting ? <Spinner className="size-4 mr-2" /> : null}
             {isSubmitting ? "Updating..." : "Update Post"}
