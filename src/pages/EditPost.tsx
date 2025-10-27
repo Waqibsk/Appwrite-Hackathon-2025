@@ -9,7 +9,7 @@ import {
   tabelsDB,
   ITEMS_COLLECTIONS_ID,
 } from "@/lib/appwrite";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import { Spinner } from "@/components/ui/spinner";
 
 interface PostFormState {
@@ -152,9 +152,9 @@ export default function EditPost() {
 
   return (
     <motion.div
-   initial={{x:-20,opacity:0}}
-    animate={{x:0,opacity:1}}
-    transition={{duration:0.3}}
+      initial={{ x: -20, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.3 }}
     >
       <div className="max-w-lg mx-auto mt-8 p-6 border rounded-xl shadow-lg">
         <h2 className="text-2xl font-semibold mb-4">Edit Lost/Found Post</h2>
@@ -170,15 +170,6 @@ export default function EditPost() {
           />
 
           <input
-            type="text"
-            name="type"
-            placeholder="Lost or found"
-            value={form.type}
-            onChange={handleChange}
-            required
-            className="border p-2 rounded"
-          />
-          <input
             name="lastSeen"
             placeholder="Last Seen"
             value={form.lastSeen}
@@ -186,6 +177,32 @@ export default function EditPost() {
             required
             className="border p-2 rounded"
           />
+
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => setForm({ ...form, type: "Lost" })}
+              className={`border p-2 rounded w-full ${
+                form.type === "Lost"
+                  ? "bg-blue-500 text-white border-blue-500"
+                  : "bg-white text-gray-700"
+              }`}
+            >
+              Lost
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setForm({ ...form, type: "Found" })}
+              className={`border p-2 rounded w-full ${
+                form.type === "Found"
+                  ? "bg-green-500 text-white border-green-500"
+                  : "bg-white text-gray-700"
+              }`}
+            >
+              Found
+            </button>
+          </div>
 
           <label
             htmlFor="image-upload"

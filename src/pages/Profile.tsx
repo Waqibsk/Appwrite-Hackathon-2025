@@ -6,7 +6,7 @@ import { PostType } from "@/types/post";
 import { Query } from "appwrite";
 import React, { useEffect, useState } from "react";
 
-import {motion, scale} from "framer-motion"
+import { motion, scale } from "framer-motion";
 
 export default function Profile() {
   const { user, loading } = useUser();
@@ -69,14 +69,14 @@ export default function Profile() {
   }
   return (
     <motion.div
-   initial={{x:-20,opacity:0}} 
-   animate={{x:0,opacity:1}}
-   transition={{duration:0.3}}
+      initial={{ x: -20, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.3 }}
     >
-      <div className="text-[40px] fonr-semibold p-3">Dashboard</div>
+      <div className="text-[40px] font-serif p-3">Dashboard</div>
 
       <div className="p-4">
-        <h1 className="">Not Resolved</h1>
+        <h1 className="text-[20px] font-semibold">Not Resolved</h1>
         <div>
           {notResolvedItems.length === 0 ? (
             <p className="m-4"> No items to show</p>
@@ -84,7 +84,9 @@ export default function Profile() {
             notResolvedItems.map((item) => (
               <UserPostCard
                 key={item.$id}
+                setNotResolvedItems={setNotResolvedItems}
                 setItems={setItems}
+                setResolvedItems={setResolvedItems}
                 onToggleResolve={handleToggleResolve}
                 item={item}
               />
@@ -93,7 +95,7 @@ export default function Profile() {
         </div>
       </div>
       <div className="p-4">
-        <h1>Resolved</h1>
+        <h1 className="text-[20px] font-semibold">Resolved</h1>
         <div>
           {resolvedItems.length === 0 ? (
             <p className="m-4"> No items to show</p>
@@ -102,7 +104,9 @@ export default function Profile() {
               <UserPostCard
                 key={item.$id}
                 item={item}
+                setNotResolvedItems={setNotResolvedItems}
                 setItems={setItems}
+                setResolvedItems={setResolvedItems}
                 onToggleResolve={handleToggleResolve}
               />
             ))

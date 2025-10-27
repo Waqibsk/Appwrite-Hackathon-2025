@@ -7,14 +7,18 @@ import { Spinner } from "./ui/spinner";
 import { Pencil, CheckCircle, Undo2 } from "lucide-react";
 import { Trash2 } from "lucide-react";
 import { PostType } from "@/types/post";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
 export default function UserPostCard({
   item,
   onToggleResolve,
   setItems,
+  setResolvedItems,
+  setNotResolvedItems,
 }: {
   item: PostType;
   setItems: React.Dispatch<SetStateAction<any[]>>;
+  setResolvedItems: React.Dispatch<SetStateAction<any[]>>;
+  setNotResolvedItems: React.Dispatch<SetStateAction<any[]>>;
   onToggleResolve: (toggledItem: PostType) => void;
 }) {
   const { $id: id, name, resolved } = item;
@@ -73,7 +77,12 @@ export default function UserPostCard({
         rowId: id,
       });
 
-      setItems((prevItems) => prevItems.filter((item) => item.$id !== id));
+      setResolvedItems((prevItems) =>
+        prevItems.filter((item) => item.$id !== id)
+      );
+      setNotResolvedItems((prevItems) =>
+        prevItems.filter((item) => item.$id !== id)
+      );
     } catch (error) {
       console.error("Failed to delete item:", error);
       alert("Could not delete item. Please try again.");
@@ -83,10 +92,10 @@ export default function UserPostCard({
   };
   return (
     <motion.div
-  initial={{ scale: 1 }}
-  whileHover={{ scale: 1.02 }}
-  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-      className="w-[93%] h-[60px]  shadow-md border-[1px] border-slate-300 cursor-pointer flex flex-col m-3   "
+      initial={{ scale: 1 }}
+      whileHover={{ scale: 1.01 }}
+      transition={{ type: "spring", stiffness: 300, damping: 15 }}
+      className="w-[98%] h-[60px]  shadow-md border-[1px] border-slate-300 cursor-pointer flex flex-col m-3   "
       onClick={() => {
         if (isDeleting) return;
         navigate(`/item/${id}`);
@@ -104,11 +113,11 @@ export default function UserPostCard({
                 title={resolved ? "Mark as Unresolved" : "Mark as Resolved"}
               >
                 {isTogglingResolve ? (
-                  <Spinner className="size-4" />
+                  <Spinner className="size-5" />
                 ) : resolved ? (
-                  <Undo2 className="size-4" />
+                  <Undo2 className="size-5" />
                 ) : (
-                  <CheckCircle className="size-4" />
+                  <CheckCircle className="size-5" />
                 )}
               </div>
               <div
@@ -116,9 +125,9 @@ export default function UserPostCard({
                 className=" bg-transparent text-black "
               >
                 {isDeleting ? (
-                  <Spinner className="size-4" />
+                  <Spinner className="size-5" />
                 ) : (
-                  <Trash2 className="size-4" />
+                  <Trash2 className="size-5" />
                 )}
               </div>
               <div
@@ -128,7 +137,7 @@ export default function UserPostCard({
                   navigate(`/item/edit/${id}`);
                 }}
               >
-                <Pencil className="size-4" />
+                <Pencil className="size-5" />
               </div>
             </div>
           </div>

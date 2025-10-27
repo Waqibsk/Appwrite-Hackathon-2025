@@ -12,7 +12,7 @@ import {
   ITEMS_COLLECTIONS_ID,
 } from "@/lib/appwrite";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import { Spinner } from "@/components/ui/spinner";
 import { useParams } from "react-router";
 import { Permission, Role } from "appwrite";
@@ -94,9 +94,9 @@ export default function CreatePost() {
     );
   return (
     <motion.div
-    initial={{x:-20,opacity:0}}
-    animate={{x:0,opacity:1}}
-    transition={{duration:0.3}}
+      initial={{ x: -20, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.3 }}
     >
       <div className="max-w-lg mx-auto mt-8 p-6 border rounded-xl shadow-lg">
         <h2 className="text-2xl font-semibold mb-4">Create Lost/Found Post</h2>
@@ -111,15 +111,32 @@ export default function CreatePost() {
             className="border p-2 rounded"
           />
 
-          <input
-            type="text"
-            name="type"
-            placeholder="Lost or found "
-            value={form.type}
-            onChange={handleChange}
-            required
-            className="border p-2 rounded"
-          />
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => setForm({ ...form, type: "Lost" })}
+              className={`border p-2 rounded w-full ${
+                form.type === "Lost"
+                  ? "bg-blue-500 text-white border-blue-500"
+                  : "bg-white text-gray-700"
+              }`}
+            >
+              Lost
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setForm({ ...form, type: "Found" })}
+              className={`border p-2 rounded w-full ${
+                form.type === "Found"
+                  ? "bg-green-500 text-white border-green-500"
+                  : "bg-white text-gray-700"
+              }`}
+            >
+              Found
+            </button>
+          </div>
+
           <input
             name="lastSeen"
             placeholder="Last Seen"
@@ -177,7 +194,7 @@ export default function CreatePost() {
 
           <button
             type="submit"
-            className="bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
+            className="bg-neutral-800 text-white p-2 rounded hover:bg-neutral-700 "
           >
             Submit Post
           </button>

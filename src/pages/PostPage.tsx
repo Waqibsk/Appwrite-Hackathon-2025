@@ -7,7 +7,7 @@ import { p } from "react-router/dist/development/index-react-server-client-BbRcB
 import Navbar from "@/components/global/Navbar";
 import { Spinner } from "@/components/ui/spinner";
 import { BUCKET_ID, storage } from "@/lib/appwrite";
-import {motion, scale} from "framer-motion"
+import { motion, scale } from "framer-motion";
 
 export default function PostPage() {
   const { id } = useParams();
@@ -43,13 +43,10 @@ export default function PostPage() {
 
   return (
     <motion.div
-
-    initial={{x:-40,opacity:0}} 
-    animate={{x:0,opacity:1}}
-    transition={{duration:0.3}}
-
+      initial={{ x: -40, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.3 }}
     >
-
       {loading ? (
         <div className="flex justify-center min-h-screen items-center">
           <Spinner className="size-8" />
@@ -62,11 +59,7 @@ export default function PostPage() {
                 {item.name}
               </h1>
               {imageUrl && (
-                  <motion.div
-                 
-
-
-                    className=" my-3 pt-1 w-2/5  max-[700px]:w-[93%] max-[700px]:block hidden ">
+                <motion.div className=" my-3 pt-1 w-2/5  max-[700px]:w-[93%] max-[700px]:block hidden ">
                   <img
                     className="w-full rounded-[10px]"
                     src={imageUrl}
@@ -76,8 +69,17 @@ export default function PostPage() {
               )}
               <div className="text-xl py-2 px-2 font-poppins  animate-fadeIn max-[300px]:text-sm ugc-desc">
                 {item?.remarks ?? ""}
+                <div>
+                  <div>
+                    <span className="font-bold">
+                      {" "}
+                      Bounty: {item.bounty} Rupee
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
+
             <div className=" m-3 pt-10 w-2/5  max-[700px]:hidden  block">
               {imageUrl && (
                 <img

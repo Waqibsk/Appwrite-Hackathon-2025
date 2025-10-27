@@ -39,7 +39,7 @@ export default function Navbar() {
           Signin
         </Button>
       )}
- {user && (
+      {user && (
         <Button
           size="lg"
           variant="outline"
@@ -73,7 +73,6 @@ export default function Navbar() {
           Logout
         </Button>
       )}
-     
     </div>
   );
 }
