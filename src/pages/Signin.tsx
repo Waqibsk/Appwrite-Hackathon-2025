@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label";
 import { Check } from "lucide-react";
 import { useNavigate } from "react-router";
 import { DB_ID, USER_COLLECTIONS_ID } from "@/lib/appwrite";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
 
 export function SignIn() {
   const [email, setEmail] = useState("");
@@ -58,14 +58,12 @@ export function SignIn() {
           <Check size={18} /> Signed in successfully!
         </span>
       );
-
     } catch (err: any) {
       console.error(err);
       setMessage(err.message || "Invalid OTP.");
     } finally {
-
       navigate("/");
-      window.location.reload()
+      window.location.reload();
       setLoading(false);
     }
   }
@@ -73,9 +71,10 @@ export function SignIn() {
   return (
     <motion.div
       initial={{ scale: 1 }}
-  whileHover={{ scale: 1.05 }}
-  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-      className="flex justify-center min-h-screen items-center">
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 300, damping: 15 }}
+      className="flex justify-center min-h-screen items-center"
+    >
       <div className="p-10 w-[40%] shadow-md rounded-xl border bg-white ">
         <h2 className="text-2xl font-semibold text-center mb-4">Sign In</h2>
 

@@ -21,10 +21,41 @@ export default function ItemsList() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [items, setItems] = useState<PostType[]>([]);
+  const [visibleLostItemsCount, setVisibleLostItemsCount] = useState(5);
+  const [visibleFoundItemsCount, setVisibleFoundItemsCount] = useState(5);
+  const [visibleAllItemsCount, setVisibleAllItemsCount] = useState(5);
   const [LostItems, setLostItems] = useState<PostType[]>([]);
+
   const [FoundItems, setFoundItems] = useState<PostType[]>([]);
+  const [visibleLostItems, setVisibleLostItems] = useState<PostType[]>([]);
+  const [visibleFoundItems, setVisibleFoundItems] = useState<PostType[]>([]);
+  const [visibleItems, setVisibleItems] = useState<PostType[]>([]);
   const [spaceName, setSpaceName] = useState("");
+
   const [spaceDescription, setSpaceDescription] = useState("");
+  const itemsPerPage = 5;
+  const handleLoadMore = (type: string) => {
+    if (type === "lost") {
+      setVisibleLostItemsCount((prev) => {
+        const newCount = prev + itemsPerPage;
+        setVisibleLostItems(LostItems.slice(0, newCount));
+        return newCount;
+      });
+    } else if (type === "found") {
+      setVisibleFoundItemsCount((prev) => {
+        const newCount = prev + itemsPerPage;
+        setVisibleFoundItems(FoundItems.slice(0, newCount));
+        return newCount;
+      });
+    } else {
+      setVisibleAllItemsCount((prev) => {
+        const newCount = prev + itemsPerPage;
+        setVisibleItems(items.slice(0, newCount));
+        return newCount;
+      });
+    }
+  };
+
   useEffect(() => {
     const fetchItems = async () => {
       try {
@@ -46,12 +77,26 @@ export default function ItemsList() {
 
           setItems(rows as unknown as PostType[]);
 
+          setVisibleItems(
+            rows.slice(0, visibleAllItemsCount) as unknown as PostType[]
+          );
+
           if (rows) {
             const lostItems = rows.filter((item) => item.type === "Lost");
-
             const foundItems = rows.filter((item) => item.type === "Found");
+
             setLostItems(lostItems as unknown as PostType[]);
             setFoundItems(foundItems as unknown as PostType[]);
+
+            setVisibleLostItems(
+              lostItems.slice(0, visibleLostItemsCount) as unknown as PostType[]
+            );
+            setVisibleFoundItems(
+              foundItems.slice(
+                0,
+                visibleFoundItemsCount
+              ) as unknown as PostType[]
+            );
           }
           setLoading(false);
         }
@@ -65,8 +110,8 @@ export default function ItemsList() {
 
   const handleSortbyTime = (name: string) => {
     if (name == "lost") {
-      setLostItems(
-        [...items]
+      setVisibleLostItems(
+        [...visibleLostItems]
           .filter((item) => item.type === "Lost")
           .sort(
             (a, b) =>
@@ -75,8 +120,8 @@ export default function ItemsList() {
           )
       );
     } else if (name == "found") {
-      setFoundItems(
-        [...items]
+      setVisibleFoundItems(
+        [...visibleFoundItems]
           .filter((item) => item.type === "Found")
           .sort(
             (a, b) =>
@@ -85,8 +130,8 @@ export default function ItemsList() {
           )
       );
     } else {
-      setItems(
-        [...items].sort(
+      setVisibleItems(
+        [...visibleItems].sort(
           (a, b) =>
             new Date(b.$createdAt).getTime() - new Date(a.$createdAt).getTime()
         )
@@ -135,13 +180,26 @@ export default function ItemsList() {
                   <ArrowDownWideNarrow /> Recent
                 </Button>
               </div>
-              <div className="grid grid-cols-5  max-lg:grid-cols-4 gap-2 max-md:grid-cols-3 max-h-[500px] max-sm:grid-cols-2 max-[380px]:grid-cols-1 ">
+              <div className="grid grid-cols-5  max-lg:grid-cols-4 gap-2 max-md:grid-cols-3 max-sm:grid-cols-2 max-[380px]:grid-cols-1 ">
                 {LostItems.length === 0 ? (
                   <p className="m-4"> No items to show</p>
                 ) : (
-                  LostItems.map((item) => <PostCard post={item} />)
+                  visibleLostItems.map((item) => <PostCard post={item} />)
                 )}
               </div>
+              {!loading && visibleLostItemsCount < LostItems.length && (
+                <div className="flex justify-center mt-4">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    onClick={() => {
+                      handleLoadMore("lost");
+                    }}
+                  >
+                    Load More
+                  </Button>
+                </div>
+              )}
             </div>
             <div>
               <div className="flex items-center justify-between">
@@ -155,13 +213,26 @@ export default function ItemsList() {
                   <ArrowDownWideNarrow /> Recent
                 </Button>
               </div>
-              <div className="grid grid-cols-5  max-lg:grid-cols-4 gap-2 max-md:grid-cols-3  max-h-[500px] max-sm:grid-cols-2 max-[380px]:grid-cols-1 ">
+              <div className="grid grid-cols-5  max-lg:grid-cols-4 gap-2 max-md:grid-cols-3   max-sm:grid-cols-2 max-[380px]:grid-cols-1 ">
                 {FoundItems.length === 0 ? (
                   <p className="m-4"> No items to show</p>
                 ) : (
-                  FoundItems.map((item) => <PostCard post={item} />)
+                  visibleFoundItems.map((item) => <PostCard post={item} />)
                 )}
               </div>
+              {!loading && visibleFoundItemsCount < FoundItems.length && (
+                <div className="flex justify-center mt-4">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    onClick={() => {
+                      handleLoadMore("found");
+                    }}
+                  >
+                    Load More
+                  </Button>
+                </div>
+              )}
             </div>
             <div>
               <div className="flex items-center justify-between">
@@ -175,13 +246,26 @@ export default function ItemsList() {
                   <ArrowDownWideNarrow /> Recent
                 </Button>
               </div>
-              <div className="grid grid-cols-5  max-lg:grid-cols-4 gap-1 max-md:grid-cols-3 max-h-[500px] max-sm:grid-cols-2 max-[380px]:grid-cols-1 ">
+              <div className="grid grid-cols-5  max-lg:grid-cols-4 gap-1 max-md:grid-cols-3  max-sm:grid-cols-2 max-[380px]:grid-cols-1 ">
                 {items.length === 0 ? (
                   <p className="m-4"> No items to show</p>
                 ) : (
-                  items.map((item) => <PostCard post={item} />)
+                  visibleItems.map((item) => <PostCard post={item} />)
                 )}
               </div>
+              {!loading && visibleAllItemsCount < items.length && (
+                <div className="flex justify-center my-4">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    onClick={() => {
+                      handleLoadMore("all");
+                    }}
+                  >
+                    Load More
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         </div>
