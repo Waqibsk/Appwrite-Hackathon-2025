@@ -29,7 +29,7 @@ export default function CreatePost() {
     resolved: false,
     bounty: "",
     category: "Documents",
-    priority: "medium",
+    priority: "Medium",
   });
 
   const handleChange = (
@@ -187,9 +187,9 @@ export default function CreatePost() {
             onChange={handleChange}
             className="border p-2 rounded"
           >
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
           </select>
 
           <button

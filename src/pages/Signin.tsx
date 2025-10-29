@@ -74,7 +74,7 @@ export function SignIn() {
       transition={{ type: "spring", stiffness: 300, damping: 15 }}
       className="flex justify-center min-h-screen items-center"
     >
-      <div className="p-10 w-full  lg:w-[40%] shadow-md rounded-xl border bg-white ">
+      <div className="p-10 w-[98%]  lg:w-[40%] shadow-md rounded-xl border bg-white ">
         <h2 className="text-2xl font-semibold text-center mb-4">Sign In</h2>
 
         {step === "email" && (

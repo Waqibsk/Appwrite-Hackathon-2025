@@ -62,7 +62,7 @@ export default function PostPage() {
                   <img
                     className="w-full rounded-[10px]"
                     src={imageUrl}
-                    alt="Event Poster"
+                    alt="Item Poster"
                   />
                 </motion.div>
               )}
@@ -79,8 +79,7 @@ export default function PostPage() {
                   <div>
                     <span className="">
                       {" "}
-                      <span className="font-bold ">Bounty:</span> {item.bounty?item.bounty:"None"}{" "}
-                      Rupee
+                      <span className="font-bold ">Bounty:</span> {item.bounty?item.bounty +"Rupees" :"None"}{" "}
                     </span>
                   </div>
 
@@ -101,7 +100,7 @@ export default function PostPage() {
                 <img
                   className="w-full rounded-[10px]"
                   src={imageUrl}
-                  alt="Event Poster"
+                  alt="Item Poster"
                 />
               )}
             </div>
