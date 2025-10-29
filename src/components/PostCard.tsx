@@ -24,7 +24,7 @@ export default function PostCard({ post }: { post: PostType }) {
         stiffness: 300,
         damping: 15,
       }}
-      className="w-[93%] h-[400px]  shadow-md border-[1px] border-slate-300 cursor-pointer flex flex-col m-3   "
+      className="w-[93%] h-[400px] font-sans shadow-md border-[1px] border-slate-300 cursor-pointer flex flex-col m-3   "
       onClick={() => {
         navigate(`/item/${post.$id}`);
         window.scrollTo(0, 0);
@@ -51,7 +51,7 @@ export default function PostCard({ post }: { post: PostType }) {
           </div>
           <div className="h-[60%] flex justify-center px-3 flex-col ">
             <div className="overflow-hidden whitespace-nowrap text-ellipsis">
-              LastSeen: {post.lastseen}
+              Last Seen: {post.lastseen}
             </div>
             <div>Priority: {post.priority}</div>
           </div>

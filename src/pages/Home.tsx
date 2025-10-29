@@ -52,8 +52,8 @@ export default function Home() {
       className=" min-h-screen text-black "
     >
       <div className="p-4">
-        <div className="flex justify-between">
-          <div className="flex flex-col w-[80%] mb-4">
+        <div className="flex flex-col lg:flex-row justify-between">
+          <div className="flex flex-col w-full lg:w-[80%] mb-4">
             <h1 className="text-[40px]  mb-4 font-serif">Spaces</h1>
             <p>
               Each Space is a dedicated area created to handle lost and found

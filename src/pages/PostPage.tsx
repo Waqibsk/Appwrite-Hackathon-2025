@@ -69,13 +69,30 @@ export default function PostPage() {
               )}
               <div className="text-xl py-2 px-2 font-poppins  animate-fadeIn max-[300px]:text-sm ugc-desc">
                 {item?.remarks ?? ""}
-                <div>
+                <div className="font-sans">
                   <div>
-                    <span className="font-bold">
+                    <span className="">
                       {" "}
-                      Bounty: {item.bounty} Rupee
+                      <span className="font-bold">Last Seen:</span>{" "}
+                      {item.lastseen} 
                     </span>
                   </div>
+                  <div>
+                    <span className="">
+                      {" "}
+                      <span className="font-bold ">Bounty:</span> {item.bounty?item.bounty:"None"}{" "}
+                      Rupee
+                    </span>
+                  </div>
+
+                  <div>
+                    <span className="">
+                      {" "}
+                        <span className="font-bold">Created on :</span>   {new Date(item.$createdAt).toLocaleDateString("en-US")}{" "}
+                    </span>
+                  </div>
+
+
                 </div>
               </div>
             </div>

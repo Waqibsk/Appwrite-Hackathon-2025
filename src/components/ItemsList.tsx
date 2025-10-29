@@ -153,13 +153,14 @@ export default function ItemsList() {
       ) : (
         <div>
           <div className="flex flex-col">
-            <div className="flex justify-between m-4">
+            <div className="flex flex-col lg:flex-row m-4">
               <div>
-                <div className="flex flex-col w-[80%] mb-4">
+                <div className="flex flex-col  w-full lg:-w[80%] mb-4">
                   <h1 className="text-[40px]  mb-4 font-serif">{spaceName}</h1>
                   <p>{spaceDescription}</p>
                 </div>
               </div>
+                <div>
               <Button
                 onClick={() => {
                   navigate(`/create/${id}`);
@@ -167,7 +168,9 @@ export default function ItemsList() {
               >
                 <Plus /> Create Post
               </Button>
-            </div>
+ 
+              </div>
+           </div>
             <div>
               <div className="flex items-center justify-between">
                 <h1 className="p-4 font-semibold text-[30px]">Lost Items</h1>

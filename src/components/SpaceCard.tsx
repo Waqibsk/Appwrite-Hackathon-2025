@@ -33,12 +33,12 @@ export default function SpaceCard({
         window.scrollTo(0, 0);
       }}
     >
-      <div className=" rounded-lg h-[200px] cursor-pointer shadow-sm hover:shadow-xl flex max-sm:flex-col">
+      <div className=" rounded-lg h-full cursor-pointer shadow-sm hover:shadow-xl flex max-sm:flex-col">
         {imageUrl && (
-          <div className="w-full h-full flex justify-center ">
+          <div className="w-full h-[380px] flex justify-center ">
             <img
               src={imageUrl}
-              className="max-sm:h-[100px] h-full w-full object-cover"
+              className=" h-full w-full object-cover"
               alt=""
             />
           </div>
