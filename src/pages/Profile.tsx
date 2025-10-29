@@ -6,7 +6,7 @@ import { PostType } from "@/types/post";
 import { Query } from "appwrite";
 import React, { useEffect, useState } from "react";
 
-import { motion, scale } from "framer-motion";
+import { motion  } from "framer-motion";
 
 export default function Profile() {
   const { user, loading } = useUser();

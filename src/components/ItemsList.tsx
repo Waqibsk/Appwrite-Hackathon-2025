@@ -8,7 +8,6 @@ import {
   DB_ID,
   ITEMS_COLLECTIONS_ID,
   SPACES_COLLECTIONS_ID,
-  storage,
   tabelsDB,
 } from "@/lib/appwrite";
 import { Query } from "appwrite";
@@ -160,17 +159,16 @@ export default function ItemsList() {
                   <p>{spaceDescription}</p>
                 </div>
               </div>
-                <div>
-              <Button
-                onClick={() => {
-                  navigate(`/create/${id}`);
-                }}
-              >
-                <Plus /> Create Post
-              </Button>
- 
+              <div>
+                <Button
+                  onClick={() => {
+                    navigate(`/create/${id}`);
+                  }}
+                >
+                  <Plus /> Create Post
+                </Button>
               </div>
-           </div>
+            </div>
             <div>
               <div className="flex items-center justify-between">
                 <h1 className="p-4 font-semibold text-[30px]">Lost Items</h1>

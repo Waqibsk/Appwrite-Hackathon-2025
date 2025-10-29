@@ -1,8 +1,6 @@
 import React from "react";
-import Navbar from "@/components/global/Navbar";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { SpaceType } from "@/types/space";
 
 import { motion } from "framer-motion";
 import {
@@ -13,7 +11,6 @@ import {
   DB_ID,
   SPACES_COLLECTIONS_ID,
 } from "@/lib/appwrite";
-import { Permission, Role } from "appwrite";
 export default function CreateSpace() {
   const navigate = useNavigate();
   const [form, setForm] = useState<any>({

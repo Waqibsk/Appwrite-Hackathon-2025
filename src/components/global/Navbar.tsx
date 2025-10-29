@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
-import { useNavigate,useLocation } from "react-router";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router";
 import { Button } from "../ui/button";
 import { account } from "@/lib/appwrite";
 import { Menu, X } from "lucide-react";
@@ -9,7 +9,7 @@ export default function Navbar() {
   const [user, setUser] = useState<any>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const location=useLocation()
+  const location = useLocation();
 
   useEffect(() => {
     async function getCurrentUser() {
@@ -57,7 +57,7 @@ export default function Navbar() {
       </div>
 
       <div className="hidden md:flex items-center gap-4">
-        {!user  && location.pathname !== "/signin" && (
+        {!user && location.pathname !== "/signin" && (
           <NavButton label="Signin" onClick={() => navigate("/signin")} />
         )}
         {user && (
@@ -77,7 +77,7 @@ export default function Navbar() {
 
       {menuOpen && (
         <div className="absolute top-[64px] left-0 w-full bg-white border-t border-slate-200 flex flex-col items-center gap-2 py-3 md:hidden">
-          {!user  && location.pathname !== "/signin" && (
+          {!user && location.pathname !== "/signin" && (
             <NavButton label="Signin" onClick={() => navigate("/signin")} />
           )}
           {user && (

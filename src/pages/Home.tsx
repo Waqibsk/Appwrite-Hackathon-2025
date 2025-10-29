@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
-import Navbar from "@/components/global/Navbar";
+import  { useEffect, useState } from "react";
 import {
-  account,
   tabelsDB,
   DB_ID,
   SPACES_COLLECTIONS_ID,
 } from "@/lib/appwrite";
 import { Plus } from "lucide-react";
 import { motion } from "framer-motion";
-import { Query } from "appwrite";
 import { SpaceType } from "@/types/space";
 import { Spinner } from "@/components/ui/spinner";
 import SpaceCard from "@/components/SpaceCard";

@@ -2,7 +2,6 @@ import React, { SetStateAction, useState } from "react";
 import { storage, BUCKET_ID } from "@/lib/appwrite";
 import { useNavigate } from "react-router";
 import { DB_ID, tabelsDB, ITEMS_COLLECTIONS_ID } from "@/lib/appwrite";
-import { Button } from "./ui/button";
 import { Spinner } from "./ui/spinner";
 import { Pencil, CheckCircle, Undo2 } from "lucide-react";
 import { Trash2 } from "lucide-react";

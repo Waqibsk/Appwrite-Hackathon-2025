@@ -1,13 +1,11 @@
 import { DB_ID, ITEMS_COLLECTIONS_ID, tabelsDB } from "@/lib/appwrite";
 import { PostType } from "@/types/post";
 import { Query } from "appwrite";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { p } from "react-router/dist/development/index-react-server-client-BbRcBjrA";
-import Navbar from "@/components/global/Navbar";
 import { Spinner } from "@/components/ui/spinner";
 import { BUCKET_ID, storage } from "@/lib/appwrite";
-import { motion, scale } from "framer-motion";
+import { motion} from "framer-motion";
 
 export default function PostPage() {
   const { id } = useParams();
@@ -73,24 +71,26 @@ export default function PostPage() {
                     <span className="">
                       {" "}
                       <span className="font-bold">Last Seen:</span>{" "}
-                      {item.lastseen} 
+                      {item.lastseen}
                     </span>
                   </div>
                   <div>
                     <span className="">
                       {" "}
-                      <span className="font-bold ">Bounty:</span> {item.bounty?item.bounty +"Rupees" :"None"}{" "}
+                      <span className="font-bold ">Bounty:</span>{" "}
+                      {item.bounty ? item.bounty + " " + "Rupees" : "None"}{" "}
                     </span>
                   </div>
 
                   <div>
                     <span className="">
                       {" "}
-                        <span className="font-bold">Created on :</span>   {new Date(item.$createdAt).toLocaleDateString("en-US")}{" "}
+                      <span className="font-bold">Created on :</span>{" "}
+                      {new Date(item.$createdAt).toLocaleDateString(
+                        "en-US"
+                      )}{" "}
                     </span>
                   </div>
-
-
                 </div>
               </div>
             </div>

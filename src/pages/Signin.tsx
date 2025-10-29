@@ -1,19 +1,16 @@
 import React, { useState } from "react";
-import { account, ID_, tabelsDB } from "@/lib/appwrite";
+import { account, ID_  } from "@/lib/appwrite";
 import {
   InputOTP,
   InputOTPGroup,
-  InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { Role, Permission, Query } from "appwrite";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Check } from "lucide-react";
 import { useNavigate } from "react-router";
-import { DB_ID, USER_COLLECTIONS_ID } from "@/lib/appwrite";
 import { motion } from "framer-motion";
 
 export function SignIn() {

@@ -54,7 +54,7 @@ Argus is a crowdsourced lost & found platform that allows users to report lost b
 
 1. Clone the Repository
 
-``` 
+```
 git clone https://github.com/Waqibsk/Appwrite-Hackathon-2025.git
 cd Appwrite-Hackathon-2025
 ```
@@ -67,7 +67,7 @@ npm install
 
 3. Create a `.env` file refering to `.env.example`
 
-``` ini
+```ini
 VITE_API_ENDPOINT="Your Appwrite API endpoint"
 VITE_PROJECT_ID="Your Appwrite Project Id"
 VITE_DATABASE_ID="Your Appwrite Database Id"

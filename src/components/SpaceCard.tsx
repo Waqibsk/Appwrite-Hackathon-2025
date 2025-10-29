@@ -1,4 +1,3 @@
-import React from "react";
 import { storage } from "@/lib/appwrite";
 import { useNavigate } from "react-router";
 import { BUCKET_ID } from "@/lib/appwrite";
