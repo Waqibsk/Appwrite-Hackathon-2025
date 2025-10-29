@@ -47,7 +47,6 @@ export function SignIn() {
     if (!userId) return;
     setLoading(true);
     try {
-      console.log(otp);
       const session = await account.createSession({
         userId: userId,
         secret: otp,

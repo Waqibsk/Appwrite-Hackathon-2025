@@ -17,7 +17,6 @@ export default function PostPage() {
 
   useEffect(() => {
     const fetchPostDetails = async () => {
-      console.log("POOST fetching");
       if (id) {
         const res = await tabelsDB.listRows({
           databaseId: DB_ID,
