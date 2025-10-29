@@ -28,7 +28,8 @@ Argus is a crowdsourced lost & found platform that allows users to report lost b
 <img width="1919" height="952" alt="Screenshot 2025-10-29 142232" src="https://github.com/user-attachments/assets/0760117d-a641-448b-bb6d-19f696feb6f9" />
 
 <img width="1919" height="953" alt="Screenshot 2025-10-29 143825" src="https://github.com/user-attachments/assets/5f59d03c-b336-4692-9c55-bc7c5b111535" />
-<img width="1919" height="864" alt="Screenshot 2025-10-29 144345" src="https://github.com/user-attachments/assets/5709ab23-0e7d-48c2-8446-6bc2380ff7d3" />
+<img width="1919" height="949" alt="Screenshot 2025-10-29 225151" src="https://github.com/user-attachments/assets/54769f93-2bba-4b01-8de1-ea5d18911ec3" />
+
 <img width="1919" height="948" alt="Screenshot 2025-10-29 143810" src="https://github.com/user-attachments/assets/07435e9e-3a2b-41af-aea7-4a73405bd7fd" />
 <img width="1919" height="950" alt="Screenshot 2025-10-29 142148" src="https://github.com/user-attachments/assets/119c268a-538d-46dd-8e7c-5c2e30849712" />
 
