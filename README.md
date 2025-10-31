@@ -35,6 +35,9 @@ Argus is a crowdsourced lost & found platform that allows users to report lost b
 
 
 ## Upcoming Features
+1. Google Oauth integration
+2. Comment section for each post
+3. Notify the user when some item is found 
 
 ## Tech Stack
 
